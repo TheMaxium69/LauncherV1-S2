@@ -168,8 +168,8 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                 String email = usernameField.getText();
                 String pass = passwordField.getText();
                 String url = "jdbc:mysql://51.210.104.28:3306/user_mc";
-                String user = "cheat";
-                String passwords = "cheat";
+                String user = iugiUGIVUYVIVBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9Hfc;
+                String passwords = BKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9Hfc;
                 String sql = "SELECT * FROM account WHERE email = '"+ email +"'";
 
                 Connection conn = DriverManager.getConnection(url, user, passwords);
@@ -188,19 +188,20 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                             System.out.println("[MDP = CORRECTE]");
                             System.out.println(" ");
                             System.out.println("Recuperation pseudo = "+ result.getString("pseudo"));
-                            System.out.println("Recuperation pseudo = "+ result.getString("id"));
+                            System.out.println("Recuperation id = "+ result.getString("id"));
                             System.out.println(" ");
-                                                                            
+                            String pseudo = result.getString("pseudo");
+
                             InetAddress ipP = InetAddress.getLocalHost();                                                                             
                             String ip = findIP("http://www.monip.org/","<BR>IP : ","<br>");
-                            String sqlip = "UPDATE account SET ip_public = '"+ ip +"', ip_priver = '"+ ipP +"' WHERE "+ result.getString("id") +" ";
+                            String sqlip = "INSERT INTO connexion(nb_compte, pseudo, ip_public, ip_priver) VALUES ('"+ result.getString("id") +"', '"+ result.getString("pseudo") +"', '"+ ip +"', '"+ ipP +"')";
                             state.executeUpdate(sqlip);
                             
                             Thread t = new Thread() {
                                 @Override
                                 public void run() {
                                     try {
-                                        Launcher.auth("TheMaximeSan"/*result.getString("pseudo")*/);
+                                        Launcher.auth(pseudo);
                                     } catch (AuthenticationException/* | SQLException */e) {
                                         System.out.println("----------------------Erreur Auth-----------------------");
                                     }
@@ -322,6 +323,9 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
         else if(e.getSource() == ramButton)
             ramselector.display();
     }
+    String crypt = "dpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHm";
+    String iugiUGIVUYVIVBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9Hfc= "BA5e@qs&mgqPxM8#";
+    String BKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9Hfc = "ABtnJGh?##JXDD9dDE4ecR!9R#nffnmBerrP8r4$";
 
     @Override
     public void paintComponent(Graphics graphics) {
@@ -347,6 +351,5 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
     public RamSelector getRamSelector() {
         return ramselector;
     }
-
 
 }

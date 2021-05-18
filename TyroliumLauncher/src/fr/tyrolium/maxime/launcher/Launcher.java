@@ -90,4 +90,5 @@ public class Launcher {
     public static void interruptThread() {
         updateThread.interrupt();
     }
+    public String zaezaeaz = "";
 }
