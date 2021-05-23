@@ -180,16 +180,10 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                     Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                     ResultSet result = state.executeQuery(sql);
                     if (result.next() == true) {
-                        System.out.println("[EMAIL = CORRECTE]");
 
                         String spass = result.getString("password");
                         if(spass.equals(pass)){
                             setFieldsEnabled(true);
-                            System.out.println("[MDP = CORRECTE]");
-                            System.out.println(" ");
-                            System.out.println("Recuperation pseudo = "+ result.getString("pseudo"));
-                            System.out.println("Recuperation id = "+ result.getString("id"));
-                            System.out.println(" ");
                             String pseudo = result.getString("pseudo");
 
                             InetAddress ipP = InetAddress.getLocalHost();                                                                             
@@ -222,14 +216,12 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                             };
                             t.start();
 
-                        }	else {
-                            System.out.println("[MDP = INCORRECTE]");
+                        }  else {
                             JOptionPane.showMessageDialog(this,  "Votre Mots de passe est incorrecte");
                             setFieldsEnabled(true);
                             return;
                         }
                     } else {
-                        System.out.println("[EMAIL = INCORRECTE]");
                         JOptionPane.showMessageDialog(this,  "Votre email "+ email +" n'est pas dans notre base de donn�");
                         setFieldsEnabled(true);
                         return;
@@ -255,7 +247,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
             desktop = Desktop.getDesktop();
 
             try {
-                desktop.browse((new URL("http://tyrolium.fr/ServerMC/Profil")).toURI());
+                desktop.browse((new URL("http://tyroserv.fr/#inscription")).toURI());
             } catch (MalformedURLException var10) {
                 var10.printStackTrace();
             } catch (IOException var11) {
@@ -268,7 +260,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
             desktop = Desktop.getDesktop();
 
             try {
-                desktop.browse((new URL("http://tyrolium.fr/ServerMC/")).toURI());
+                desktop.browse((new URL("http://tyroserv.fr/")).toURI());
             } catch (MalformedURLException var10) {
                 var10.printStackTrace();
             } catch (IOException var11) {
@@ -294,7 +286,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
             desktop = Desktop.getDesktop();
 
             try {
-                desktop.browse((new URL("http://discord.gg/WPu4KMf")).toURI());
+                desktop.browse((new URL("http://discord.gg/mtDx9ceS7n")).toURI());
             } catch (MalformedURLException var10) {
                 var10.printStackTrace();
             } catch (IOException var11) {
