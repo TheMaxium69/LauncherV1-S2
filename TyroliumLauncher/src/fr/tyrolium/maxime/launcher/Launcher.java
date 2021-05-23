@@ -67,7 +67,6 @@ public class Launcher {
     public static void launch() throws LaunchException
     {
         ExternalLaunchProfile profile = MinecraftLauncher.createExternalProfile(TY_INFOS, GameFolder.BASIC, authInfos);
-        profile.getVmArgs().addAll(Arrays.asList(LauncherFrame.getInstance().getLauncherPanel().getRamSelector().getRamArguments()));
 
         ExternalLauncher launcher = new ExternalLauncher(profile);
 

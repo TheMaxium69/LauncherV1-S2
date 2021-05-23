@@ -41,31 +41,6 @@ import fr.theshark34.swinger.textured.STexturedButton;
 @SuppressWarnings("serial")
 public class LauncherPanel extends JPanel implements SwingerEventListener {
 
-    public static String findIP(String site, String prefixe, String suffixe) throws Exception 
-    {         
-        Scanner sc = new Scanner(new URL(site).openStream()); 
-         
-        while (sc.hasNextLine()) 
-        { 
-            String line = sc.nextLine(); 
-             
-            int a = line.indexOf(prefixe); 
-            if (a!=-1) 
-            { 
-                int b = line.indexOf(suffixe,a); 
-                if (b!=-1) 
-                { 
-                    sc.close(); 
-                    String ip = line.substring(a+prefixe.length(),b);
-                    return line.substring(a+prefixe.length(),b); 
-                } 
-            } 
-        } 
-         
-        sc.close(); 
-        return null; 
-    } 
-
     private Image background = Swinger.getResource("background.png");
 
     private Saver saver = new Saver(new File(Launcher.TY_DIR, "launcher.properties"));
@@ -73,19 +48,18 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
     public JTextField usernameField = new JTextField(this.saver.get("username"));
     public JPasswordField passwordField = new JPasswordField();
 
-    private STexturedButton connBtn = new STexturedButton(Swinger.getResource("conn.png"));
-    private STexturedButton inscBtn = new STexturedButton(Swinger.getResource("insc.png"));
-    private STexturedButton siteBtn = new STexturedButton(Swinger.getResource("site.png"));
-    private STexturedButton boutBtn = new STexturedButton(Swinger.getResource("bout.png"));
-    private STexturedButton discordBtn = new STexturedButton(Swinger.getResource("disc.png"));
-    private STexturedButton ytBtn = new STexturedButton(Swinger.getResource("yt.png"));
+    private STexturedButton connBtn = new STexturedButton(Swinger.getResource("launch.png"));
+    private STexturedButton TextCompte = new STexturedButton(Swinger.getResource("TextCompte.png"));
+    private STexturedButton TextEmail = new STexturedButton(Swinger.getResource("TextEmail.png"));
+    private STexturedButton TextMdp = new STexturedButton(Swinger.getResource("TextMdp.png"));
     private STexturedButton quitBtn = new STexturedButton(Swinger.getResource("quit.png"));
     private STexturedButton hideBtn = new STexturedButton(Swinger.getResource("hide.png"));
-    private STexturedButton ramButton = new STexturedButton(Swinger.getResource("ram.png"));
+    private STexturedButton icone = new STexturedButton(Swinger.getResource("logo.png"));
+
+    private STexturedButton siteBtn = new STexturedButton(Swinger.getResource("site.png"));
 
     private SColoredBar progressBar = new SColoredBar(new Color(255, 255, 255, 15));
     private JLabel infoLabel = new JLabel("Clique sur Jouer !", SwingConstants.CENTER);
-    private RamSelector ramselector = new RamSelector(new File(Launcher.TY_DIR, "ram.txt"));
 
     public LauncherPanel() {
         this.setLayout(null);
@@ -95,7 +69,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
         usernameField.setFont(usernameField.getFont().deriveFont(20F));
         usernameField.setOpaque(true);
         usernameField.setBorder(null);
-        usernameField.setBounds(178, 151, 255, 42);
+        usernameField.setBounds(95, 156, 300, 42);
         this.add(usernameField);
 
         passwordField.setForeground(Color.BLACK);
@@ -103,8 +77,32 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
         passwordField.setFont(passwordField.getFont().deriveFont(20F));
         passwordField.setOpaque(true);
         passwordField.setBorder(null);
-        passwordField.setBounds(178, 229, 255, 42);
+        passwordField.setBounds(95, 234, 300, 42);
         this.add(passwordField);
+
+        TextCompte.setBounds(156, 80);
+        this.add(this.TextCompte);
+
+        TextEmail.setBounds(95, 100);
+        this.add(this.TextEmail);
+
+        TextMdp.setBounds(95, 178);
+        this.add(this.TextMdp);
+
+        quitBtn.setBounds(920, 7, 45, 45);
+        quitBtn.addEventListener(this);
+        this.add(quitBtn);
+
+        hideBtn.setBounds(867, 7, 45, 45);
+        hideBtn.addEventListener(this);
+        this.add(hideBtn);
+
+        connBtn.setBounds(142, 290, 206, 74);
+        connBtn.addEventListener(this);
+        this.add(connBtn);
+
+        icone.setBounds(137, 380, 216, 151);
+        this.add(icone);
 
         progressBar.setBounds(12, 593, 951, 20);
         this.add(progressBar);
@@ -114,42 +112,34 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
         infoLabel.setBounds(12, 560, 951, 25);
         this.add(infoLabel);
 
-        quitBtn.setBounds(916, 15);
-        quitBtn.addEventListener(this);
-        this.add(quitBtn);
-
-        hideBtn.setBounds(852, 15);
-        hideBtn.addEventListener(this);
-        this.add(hideBtn);
-
-        connBtn.setBounds(176, 310);
-        connBtn.addEventListener(this);
-        this.add(connBtn);
-
-        this.inscBtn.setBounds(176, 400);
-        this.inscBtn.addEventListener(this);
-        this.add(this.inscBtn);
-
-        this.siteBtn.setBounds(652, 130);
-        this.siteBtn.addEventListener(this);
+        siteBtn.setBounds(652, 130);
+        siteBtn.addEventListener(this);
         this.add(this.siteBtn);
+    }
 
-        this.boutBtn.setBounds(652, 220);
-        this.boutBtn.addEventListener(this);
-        this.add(this.boutBtn);
+    public static String findIP(String site, String prefixe, String suffixe) throws Exception
+    {
+        Scanner sc = new Scanner(new URL(site).openStream());
 
-        this.ytBtn.setBounds(652, 310);
-        this.ytBtn.addEventListener(this);
-        this.add(this.ytBtn);
+        while (sc.hasNextLine())
+        {
+            String line = sc.nextLine();
 
-        this.discordBtn.setBounds(652, 400);
-        this.discordBtn.addEventListener(this);
-        this.add(this.discordBtn);
+            int a = line.indexOf(prefixe);
+            if (a!=-1)
+            {
+                int b = line.indexOf(suffixe,a);
+                if (b!=-1)
+                {
+                    sc.close();
+                    String ip = line.substring(a+prefixe.length(),b);
+                    return line.substring(a+prefixe.length(),b);
+                }
+            }
+        }
 
-        this.ramButton.setBounds(788, 15);
-        this.ramButton.addEventListener(this);
-        this.add(this.ramButton);
-
+        sc.close();
+        return null;
     }
 
     @Override
@@ -243,19 +233,6 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                 return;
             }
         }
-        else if (e.getSource() == this.inscBtn) {
-            desktop = Desktop.getDesktop();
-
-            try {
-                desktop.browse((new URL("http://tyroserv.fr/#inscription")).toURI());
-            } catch (MalformedURLException var10) {
-                var10.printStackTrace();
-            } catch (IOException var11) {
-                var11.printStackTrace();
-            } catch (URISyntaxException var12) {
-                var12.printStackTrace();
-            }
-        }
         else if (e.getSource() == this.siteBtn) {
             desktop = Desktop.getDesktop();
 
@@ -269,51 +246,10 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                 var12.printStackTrace();
             }
         }
-        else if (e.getSource() == this.boutBtn) {
-            desktop = Desktop.getDesktop();
-
-            try {
-                desktop.browse((new URL("http://tyrolium.tebex.io")).toURI());
-            } catch (MalformedURLException var10) {
-                var10.printStackTrace();
-            } catch (IOException var11) {
-                var11.printStackTrace();
-            } catch (URISyntaxException var12) {
-                var12.printStackTrace();
-            }
-        }
-        else if (e.getSource() == this.discordBtn) {
-            desktop = Desktop.getDesktop();
-
-            try {
-                desktop.browse((new URL("http://discord.gg/mtDx9ceS7n")).toURI());
-            } catch (MalformedURLException var10) {
-                var10.printStackTrace();
-            } catch (IOException var11) {
-                var11.printStackTrace();
-            } catch (URISyntaxException var12) {
-                var12.printStackTrace();
-            }
-        }
-        else if (e.getSource() == this.ytBtn) {
-            desktop = Desktop.getDesktop();
-
-            try {
-                desktop.browse((new URL("https://www.youtube.com/channel/UCZTbdKAcFw2xrLFjO9WpYYw/")).toURI());
-            } catch (MalformedURLException var10) {
-                var10.printStackTrace();
-            } catch (IOException var11) {
-                var11.printStackTrace();
-            } catch (URISyntaxException var12) {
-                var12.printStackTrace();
-            }
-        }
         else if(e.getSource() == quitBtn)
             System.exit(0);
         else if(e.getSource() == hideBtn)
             LauncherFrame.getInstance().setState(JFrame.ICONIFIED);
-        else if(e.getSource() == ramButton)
-            ramselector.display();
     }
     String crypt = "dpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHm";
     String iugiUGIVUYVIVBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxoSMHmhGDhzD9HfcBKbdpM758KSEMfcTxFtTGfFKgfdSdSXKKLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9HfciQCcLKsQYXSMB3ctk7BtF6YxnTGfEoSMHmhGDhzD9Hfc= "BA5e@qs&mgqPxM8#";
@@ -338,10 +274,6 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
 
     public void setInfoText(String text) {
         infoLabel.setText(text);
-    }
-
-    public RamSelector getRamSelector() {
-        return ramselector;
     }
 
 }
