@@ -54,9 +54,12 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
     private STexturedButton TextMdp = new STexturedButton(Swinger.getResource("TextMdp.png"));
     private STexturedButton quitBtn = new STexturedButton(Swinger.getResource("quit.png"));
     private STexturedButton hideBtn = new STexturedButton(Swinger.getResource("hide.png"));
-    private STexturedButton icone = new STexturedButton(Swinger.getResource("logo.png"));
-
     private STexturedButton siteBtn = new STexturedButton(Swinger.getResource("site.png"));
+    private STexturedButton shopBtn = new STexturedButton(Swinger.getResource("shop.png"));
+    private STexturedButton instaBtn = new STexturedButton(Swinger.getResource("insta.png"));
+    private STexturedButton discBtn = new STexturedButton(Swinger.getResource("disc.png"));
+    private STexturedButton tweetBtn = new STexturedButton(Swinger.getResource("tweet.png"));
+    private STexturedButton icone = new STexturedButton(Swinger.getResource("logo.png"));
 
     private SColoredBar progressBar = new SColoredBar(new Color(255, 255, 255, 15));
     private JLabel infoLabel = new JLabel("Clique sur Jouer !", SwingConstants.CENTER);
@@ -112,9 +115,25 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
         infoLabel.setBounds(12, 560, 951, 25);
         this.add(infoLabel);
 
-        siteBtn.setBounds(652, 130);
+        siteBtn.setBounds(8, 9, 40, 40);
         siteBtn.addEventListener(this);
         this.add(this.siteBtn);
+
+        shopBtn.setBounds(58, 9, 40, 40);
+        shopBtn.addEventListener(this);
+        this.add(this.shopBtn);
+
+        instaBtn.setBounds(108, 9, 40, 40);
+        instaBtn.addEventListener(this);
+        this.add(this.instaBtn);
+
+        discBtn.setBounds(158, 9, 40, 40);
+        discBtn.addEventListener(this);
+        this.add(this.discBtn);
+
+        tweetBtn.setBounds(208, 9, 40, 40);
+        tweetBtn.addEventListener(this);
+        this.add(this.tweetBtn);
     }
 
     public static String findIP(String site, String prefixe, String suffixe) throws Exception
@@ -150,7 +169,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
             setFieldsEnabled(false);
 
             if(usernameField.getText().replaceAll(" ", "").length() == 0 || passwordField.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this,  "Erreur, veuillez entrer un pseudo et un mot de passe vaides.");
+                JOptionPane.showMessageDialog(this,  "Erreur, veuillez entrer un e-mail et un mot de passe valides.");
                 setFieldsEnabled(true);
                 return;
             }
@@ -207,12 +226,12 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                             t.start();
 
                         }  else {
-                            JOptionPane.showMessageDialog(this,  "Votre Mots de passe est incorrecte");
+                            JOptionPane.showMessageDialog(this,  "Votre mot de passe est incorrecte");
                             setFieldsEnabled(true);
                             return;
                         }
                     } else {
-                        JOptionPane.showMessageDialog(this,  "Votre email "+ email +" n'est pas dans notre base de donn�");
+                        JOptionPane.showMessageDialog(this,  "Votre e-mail '"+ email +"' n'est pas dans notre base de donnée");
                         setFieldsEnabled(true);
                         return;
                     }
@@ -220,7 +239,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                 } catch (Exception e2) {
                     e2.printStackTrace();
                     System.out.println("----------|REQUETE [ERREUR]|----------");
-                    JOptionPane.showMessageDialog(this,  "Une erreur de requete entre votre ordinateur et notre base de donn� est survenu");
+                    JOptionPane.showMessageDialog(this,  "Une erreur de requête entre votre ordinateur et notre base de donnée est survenue");
                     setFieldsEnabled(true);
                     return;
                 }
@@ -228,7 +247,7 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
             } catch (Exception e3) {
                 e3.printStackTrace();
                 System.out.println("----------|BASE DONNER [ERREUR]|----------");
-                JOptionPane.showMessageDialog(this,  "Une erreur entre votre ordinateur et notre base de donn� est survenu");
+                JOptionPane.showMessageDialog(this,  "Une erreur de requête entre votre ordinateur et notre base de donnée est survenue");
                 setFieldsEnabled(true);
                 return;
             }
@@ -238,6 +257,58 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
 
             try {
                 desktop.browse((new URL("http://tyroserv.fr/")).toURI());
+            } catch (MalformedURLException var10) {
+                var10.printStackTrace();
+            } catch (IOException var11) {
+                var11.printStackTrace();
+            } catch (URISyntaxException var12) {
+                var12.printStackTrace();
+            }
+        }
+        else if (e.getSource() == this.shopBtn) {
+            desktop = Desktop.getDesktop();
+
+            try {
+                desktop.browse((new URL("http://boutique.tyroserv.fr/")).toURI());
+            } catch (MalformedURLException var10) {
+                var10.printStackTrace();
+            } catch (IOException var11) {
+                var11.printStackTrace();
+            } catch (URISyntaxException var12) {
+                var12.printStackTrace();
+            }
+        }
+        else if (e.getSource() == this.instaBtn) {
+            desktop = Desktop.getDesktop();
+
+            try {
+                desktop.browse((new URL("https://www.instagram.com/tyroliumserver/")).toURI());
+            } catch (MalformedURLException var10) {
+                var10.printStackTrace();
+            } catch (IOException var11) {
+                var11.printStackTrace();
+            } catch (URISyntaxException var12) {
+                var12.printStackTrace();
+            }
+        }
+        else if (e.getSource() == this.discBtn) {
+            desktop = Desktop.getDesktop();
+
+            try {
+                desktop.browse((new URL("https://discord.gg/mtDx9ceS7n")).toURI());
+            } catch (MalformedURLException var10) {
+                var10.printStackTrace();
+            } catch (IOException var11) {
+                var11.printStackTrace();
+            } catch (URISyntaxException var12) {
+                var12.printStackTrace();
+            }
+        }
+        else if (e.getSource() == this.tweetBtn) {
+            desktop = Desktop.getDesktop();
+
+            try {
+                desktop.browse((new URL("https://twitter.com/tyrolium")).toURI());
             } catch (MalformedURLException var10) {
                 var10.printStackTrace();
             } catch (IOException var11) {

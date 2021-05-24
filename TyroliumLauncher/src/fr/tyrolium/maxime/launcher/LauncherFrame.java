@@ -5,7 +5,7 @@ import fr.theshark34.swinger.Swinger;
 import fr.theshark34.swinger.util.WindowMover;
 
 @SuppressWarnings("serial")
-public class LauncherFrame extends JFrame {
+public class    LauncherFrame extends JFrame {
 
     private static LauncherFrame instance;
     public LauncherPanel launcherPanel;
