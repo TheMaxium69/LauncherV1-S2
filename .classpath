@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="D:/Tyrolium/Workspace/launcher/Ficher/openlauncherlib-3.0.5.jar"/>
 	<classpathentry kind="lib" path="D:/Tyrolium/Workspace/launcher/Ficher/s-update-3.1.0-BETA.jar"/>
 	<classpathentry kind="lib" path="D:/Tyrolium/Workspace/launcher/Ficher/swinger-1.0.0-BETA.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Maxime Tournier/Desktop/java-discord-rpc-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

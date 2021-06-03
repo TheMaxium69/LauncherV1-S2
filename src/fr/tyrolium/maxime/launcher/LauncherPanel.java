@@ -204,6 +204,8 @@ public class LauncherPanel extends JPanel implements SwingerEventListener {
                                 @Override
                                 public void run() {
                                     try {
+                                        System.out.println("Launch Discord");
+                                        LauncherFrame.discordRPC(pseudo);
                                         Launcher.auth(pseudo);
                                     } catch (AuthenticationException/* | SQLException */e) {
                                         System.out.println("----------------------Erreur Auth-----------------------");

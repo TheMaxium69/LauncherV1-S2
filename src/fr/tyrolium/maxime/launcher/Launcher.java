@@ -1,8 +1,12 @@
 package fr.tyrolium.maxime.launcher;
 
 import java.io.File;
-import java.util.Arrays;
 
+import javax.swing.JFrame;
+
+import club.minnced.discord.rpc.DiscordEventHandlers;
+import club.minnced.discord.rpc.DiscordRPC;
+import club.minnced.discord.rpc.DiscordRichPresence;
 import fr.theshark34.openauth.AuthenticationException;
 import fr.theshark34.openlauncherlib.LaunchException;
 import fr.theshark34.openlauncherlib.external.ExternalLaunchProfile;
@@ -82,11 +86,12 @@ public class Launcher {
         {
             e.printStackTrace();
         }
-
+        
         System.exit(0);
     }
 
     public static void interruptThread() {
         updateThread.interrupt();
     }
+    
 }

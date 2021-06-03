@@ -1,6 +1,10 @@
 package fr.tyrolium.maxime.launcher;
 
 import javax.swing.JFrame;
+
+import club.minnced.discord.rpc.DiscordEventHandlers;
+import club.minnced.discord.rpc.DiscordRPC;
+import club.minnced.discord.rpc.DiscordRichPresence;
 import fr.theshark34.swinger.Swinger;
 import fr.theshark34.swinger.util.WindowMover;
 
@@ -24,6 +28,21 @@ public class    LauncherFrame extends JFrame {
         this.addMouseMotionListener(mover);
 
         this.setVisible(true);
+    }
+
+    public static void discordRPC(String arg1) {
+    	DiscordRPC DiscStatus = DiscordRPC.INSTANCE;
+    	String IdApp= "849915439844687893";
+    	String IdSteam = "";
+    	DiscordEventHandlers DiscHandler = new DiscordEventHandlers();
+    	DiscStatus.Discord_Initialize( IdApp, DiscHandler, true, IdSteam);
+    	DiscordRichPresence status = new DiscordRichPresence(); 	
+    	status.startTimestamp = System.currentTimeMillis() / 1000;
+    	status.largeImageKey = "tyrolium_servermc_v2_discord";
+    	status.largeImageText = "TYROLIUM SERVEUR MINECRAFT";
+    	status.details = "http://tyroserv.fr/";
+    	status.state = arg1 + " Joue depuis : ";
+    	DiscStatus.Discord_UpdatePresence(status);
     }
 
     public static void main(String[] args)	{
